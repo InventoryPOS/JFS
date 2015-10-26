@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core">
+     <f:view>
+        <head>
+            <title>Crear insumo</title>
+        </head>
+        <body>
+              <center>
+                <h:form>
+                    <style type="text/css">
+                        body {background:blueviolet}
+                        center{position:absolute}
+                    </style>
+                <h3>Crear un Insumo</h3>
+                <table>
+                 <tr>
+                 <td>Nombre: </td>
+                            <td>
+                                <h:inputText value="#{insumo.nombreInsumo}"/><br /><br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Codigo: </td>
+                            <td>
+                                <h:inputText value="#{insumo.codigoInsumo}"/><br /><br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Unidad: </td>
+                            <td>
+                                <h:inputText value="#{insumo.unidadInsumo}"/><br /><br />
+                            </td>
+                        </tr>
+                    <tr>
+                            <td>Cantidad: </td>
+                            <td>
+                                <h:inputText value="#{insumo.cantidadInsumo}"/><br /><br />
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>   
+               </center>      
+        </body>
+    </f:view>    
+</html>
