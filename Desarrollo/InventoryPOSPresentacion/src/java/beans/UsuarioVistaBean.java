@@ -9,7 +9,7 @@ package beans;
  *
  * @author V5
  */
-public class Usuario {
+public class UsuarioVistaBean {
     private String nombre;
     private String contrasena;
    

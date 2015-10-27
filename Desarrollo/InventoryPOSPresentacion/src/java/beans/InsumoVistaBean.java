@@ -9,7 +9,7 @@ package beans;
  *
  * @author V5
  */
-public class Insumo {
+public class InsumoVistaBean {
     private String nombreInsumo;
     private int codigoInsumo;
     private int unidadInsumo;

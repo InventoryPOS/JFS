@@ -17,13 +17,13 @@
    
     <managed-bean>
         <managed-bean-name>usuario</managed-bean-name>>
-        <managed-bean-class>beans.Usuario</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>    
+        <managed-bean-class>beans.UsuarioVistaBean</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>    
  
      <managed-bean>
         <managed-bean-name>insumo</managed-bean-name>>
-        <managed-bean-class>beans.Insumo</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean> 
+        <managed-bean-class>beans.InsumoVistaBean</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean> 
 </faces-config>
