@@ -5,10 +5,19 @@
  */
 package co.com.inventorypos.negocio;
 
+import co.com.inventorypos.comun.enums.EnumPerfil;
+
 /**
  *
  * @author FernandoMora
  */
 public interface IIPosNegocioFachada {
-    
+    /**
+     * Si el usuario y password no son validos, entonces retorna null<br>
+     * Si las credenciales son validas, entonces retorna el perfil asociado.
+     * @param usuario
+     * @param password
+     * @return 
+     */
+    public EnumPerfil verificarCredenciales(String usuario, String password);
 }
