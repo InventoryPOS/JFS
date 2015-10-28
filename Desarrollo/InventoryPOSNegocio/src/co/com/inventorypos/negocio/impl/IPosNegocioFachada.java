@@ -14,9 +14,9 @@ import co.com.inventorypos.negocio.IIPosNegocioFachada;
  */
 public class IPosNegocioFachada implements IIPosNegocioFachada{
     
-    private IIPosNegocioFachada instancia;
+    private static IIPosNegocioFachada instancia;
     
-    public IIPosNegocioFachada getInstancia(){
+    public static IIPosNegocioFachada getInstancia(){
         if( instancia == null )
             instancia = new IPosNegocioFachada();
         return instancia;
