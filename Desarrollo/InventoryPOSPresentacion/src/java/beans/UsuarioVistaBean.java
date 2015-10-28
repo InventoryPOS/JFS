@@ -5,6 +5,8 @@
  */
 package beans;
 
+import co.com.inventorypos.negocio.IIPosNegocioFachada;
+
 /**
  *
  * @author V5
@@ -28,5 +30,9 @@ public class UsuarioVistaBean {
     public String getContrasena(){
         return contrasena;
     }  
+    
+//    public void autenticar(){
+//          IIPosNegocioFachada
+//    }
    
 }
