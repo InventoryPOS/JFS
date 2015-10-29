@@ -17,7 +17,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.setLocationRelativeTo(null);
-        this.setTitle("Mi pantalla");
+        this.setTitle("Inventory POS JFS - Login");
     }
 
     /**
