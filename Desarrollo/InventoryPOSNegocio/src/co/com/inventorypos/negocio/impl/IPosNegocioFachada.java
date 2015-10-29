@@ -37,6 +37,9 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
         if( usuario.toUpperCase().equalsIgnoreCase("ADMIN") ){
             return EnumPerfil.ADMINISTRADOR;
         }
+        if( usuario.toUpperCase().equalsIgnoreCase("ADMINISTRADOR") ){
+            return EnumPerfil.ADMINISTRADOR;
+        }
         if( usuario.toUpperCase().equalsIgnoreCase("DESPACHADOR") ){
             return EnumPerfil.DESPACHADOR;
         }
