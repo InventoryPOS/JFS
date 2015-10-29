@@ -1,6 +1,8 @@
 package co.com.inventorypos.presentacion.escritorio;
 
 
+import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
 import java.awt.Color;
 //package Graphic;
 
@@ -64,6 +66,11 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("JFS InventoryPOS");
 
         jButton1.setText("Ingresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Limpiar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -150,6 +157,16 @@ public class Login extends javax.swing.JFrame {
         User.setText("");
         Pass.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        EnumPerfil perfil = IPosNegocioFachada.getInstancia().verificarCredenciales(User.getText(),Pass.getText());      
+        if(perfil!=null){
+            System.out.println("Usuario ok");
+        }
+        else{
+            System.out.println("Usuario erroneo");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
