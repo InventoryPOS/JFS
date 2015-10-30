@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
+package co.com.inventorypos.presentacion.web;
 
 import co.com.inventorypos.negocio.IIPosNegocioFachada;
+import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
 
 /**
  *
@@ -31,8 +32,6 @@ public class UsuarioVistaBean {
         return contrasena;
     }  
     
-//    public void autenticar(){
-//          IIPosNegocioFachada
-//    }
+
    
 }
