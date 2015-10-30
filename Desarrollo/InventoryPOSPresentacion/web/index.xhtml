@@ -16,23 +16,23 @@
                         .titulo{alignment-adjust: central}
                        
                     </style>
-                    <h3 class="titulo">Introduzca su nombre y password</h3>
+                    <h3 class="titulo">Introduzca su Nombre y Contraseña</h3>
                     <table>
                         <tr>
                             <td>Nombre:</td>
                             <td>
-                                <h:inputText value="#{usuario.nombre}"/>
+                                <h:inputText value="#{UsuarioVistaBean.nombre}"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>Contrasena:</td>
+                            <td>Contraseña:</td>
                             <td>
-                                <h:inputSecret value="#{usuario.contrasena}"/>
+                                <h:inputSecret value="#{UsuarioVistaBean.contrasena}"/>
                             </td>
                         </tr>
                     </table>
                     <p>
-                        <h:commandButton value="Ingresar" action="#{beanDecision.autenticar}"/>
+                        <h:commandButton value="Ingresar" action="#{LoginBean.autenticar}"/>
                     </p>
                 </h:form>
             </center>
