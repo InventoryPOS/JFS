@@ -5,17 +5,32 @@
  */
 package co.com.inventorypos.presentacion.web;
 
+import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
+
 /**
  *
  * @author V5
  */
 public class UsuarioBeanVista {
+
     private String nombre;
     private String contrasena;
+    private String outMessage;
+    
+    
+    /**
+     * Atributo outMessage
+     * @return 
+     */
+    public String getOutMessage() {
+        return outMessage;
+    }
 
     /**
      * Atributo Nombre
-     * @return 
+     *
+     * @return
      */
     public String getNombre() {
         return nombre;
@@ -24,9 +39,11 @@ public class UsuarioBeanVista {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
     /**
      * Atributo Contraseña
-     * @return 
+     *
+     * @return
      */
     public String getContrasena() {
         return contrasena;
@@ -35,6 +52,18 @@ public class UsuarioBeanVista {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-    
-    
+
+    public String verificarCredenciales() {
+        outMessage = "";
+        EnumPerfil verificarCredenciales = IPosNegocioFachada.getInstancia().verificarCredenciales(getNombre(), getContrasena());
+        if (verificarCredenciales != null && getContrasena().equals("prueba123")) {
+        outMessage = verificarCredenciales.name();
+            return "exito";
+        } else {
+            outMessage="Invalid data, consulte con el administrador del sistema";
+            return "fracaso";
+        }
+
+    }
+
 }
