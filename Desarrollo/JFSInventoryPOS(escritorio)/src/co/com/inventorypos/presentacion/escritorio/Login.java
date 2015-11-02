@@ -1,9 +1,15 @@
 package co.com.inventorypos.presentacion.escritorio;
 
 
+import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.negocio.IIPosNegocioFachada;
+import co.com.inventorypos.negocio.NegocioExcepcion;
 import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
 import java.awt.Color;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //package Graphic;
 
 /** 
@@ -11,6 +17,7 @@ import java.awt.Color;
  * @author Sergio
  */
 public class Login extends javax.swing.JFrame {
+    private IIPosNegocioFachada negocioFachada;
 
     /**
      * Creates new form Login
@@ -20,6 +27,7 @@ public class Login extends javax.swing.JFrame {
         this.getContentPane().setBackground(Color.WHITE);
         this.setLocationRelativeTo(null);
         this.setTitle("Inventory POS JFS - Login");
+        negocioFachada = IPosNegocioFachada.getInstancia();
     }
 
     /**
@@ -159,9 +167,23 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        EnumPerfil perfil = IPosNegocioFachada.getInstancia().verificarCredenciales(User.getText(),Pass.getText());      
+        EnumPerfil perfil = null;      
+        try {
+            perfil = negocioFachada.verificarCredenciales(User.getText(),String.valueOf(Pass.getPassword()));
+        } catch (NegocioExcepcion ex) {
+            ex.printStackTrace();
+        }
         if(perfil!=null){
-            System.out.println("Usuario ok");
+            try {
+                List<EnumFuncionalidades> listaFuncionalidades = negocioFachada.getFuncionalidades(perfil);
+                if( listaFuncionalidades.contains(EnumFuncionalidades.PEDIDOS_REGISTRO) ){
+                    System.out.println("Usuario ok");
+                }else{
+                    System.out.println("Perfil invalido");
+                }
+            } catch (NegocioExcepcion ex) {
+                System.out.println("Error al validar perfil");
+            }
         }
         else{
             System.out.println("Usuario erroneo");
