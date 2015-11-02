@@ -8,8 +8,6 @@ import co.com.inventorypos.negocio.NegocioExcepcion;
 import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
 import java.awt.Color;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 //package Graphic;
 
 /** 
