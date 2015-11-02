@@ -6,6 +6,7 @@
 package co.com.inventorypos.presentacion.web;
 
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.negocio.NegocioExcepcion;
 import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
 
 /**
@@ -55,15 +56,19 @@ public class UsuarioBeanVista {
 
     public String verificarCredenciales() {
         outMessage = "";
-        EnumPerfil verificarCredenciales = IPosNegocioFachada.getInstancia().verificarCredenciales(getNombre(), getContrasena());
-        if (verificarCredenciales != null && getContrasena().equals("prueba123")) {
-        outMessage = verificarCredenciales.name();
-            return "exito";
-        } else {
-            outMessage="Invalid data, consulte con el administrador del sistema";
-            return "fracaso";
+        EnumPerfil verificarCredenciales = null;
+        try {
+            verificarCredenciales = IPosNegocioFachada.getInstancia().verificarCredenciales(getNombre(), getContrasena());
+            if (verificarCredenciales != null) {
+                outMessage = verificarCredenciales.name();
+                return "exito";
+            } else {
+                outMessage="Credenciales incorrectas";
+            }
+        } catch (NegocioExcepcion ex){
+            outMessage=ex.getMessage();
         }
-
+            return "fracaso";
     }
 
 }
