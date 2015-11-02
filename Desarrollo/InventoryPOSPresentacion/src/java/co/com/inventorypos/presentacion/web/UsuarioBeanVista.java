@@ -60,7 +60,7 @@ public class UsuarioBeanVista {
         try {
             verificarCredenciales = IPosNegocioFachada.getInstancia().verificarCredenciales(getNombre(), getContrasena());
             if (verificarCredenciales != null) {
-                outMessage = verificarCredenciales.name();
+                outMessage = getNombre();
                 return "exito";
             } else {
                 outMessage="Credenciales incorrectas";
