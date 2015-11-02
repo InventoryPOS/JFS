@@ -7,12 +7,11 @@ package co.com.inventorypos.persistencia.impl;
 
 import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.persistencia.AdminConnection;
 import co.com.inventorypos.persistencia.IIPosPersistenciaFachada;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import co.com.inventorypos.persistencia.dao.CredencialesDAO;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -21,9 +20,10 @@ import java.util.List;
  */
 public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
     private static IIPosPersistenciaFachada instancia;
-    private Connection connection;
+    private AdminConnection adminConnection;
 
     private IPosPersistenciaFachada() {
+        adminConnection = new AdminConnection();
     }
     
     public static IIPosPersistenciaFachada getInstancia(){
@@ -35,41 +35,22 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
 
     @Override
     public EnumPerfil validarUsuario(String usuario, String password) throws PersistenciaExcepcion {
-        createConnection();
+        adminConnection.createConnection();
+        Connection connection = adminConnection.getConnection();
         EnumPerfil perfil = new CredencialesDAO(connection).verificarCredenciales(usuario, password);
-        closeConnection();
+        adminConnection.closeConnection();
         return perfil;
     }
 
-    private void createConnection() throws PersistenciaExcepcion {
-        try {
-            Class.forName ("oracle.jdbc.OracleDriver");// Muy necesario con ambiente web
-        } catch (ClassNotFoundException e) {
-            throw new PersistenciaExcepcion("Loading Oracle Driver FAIL");
-        }
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String user = "SYSTEM";
-        String password = "azumi";
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            throw new PersistenciaExcepcion("Falla al crear conexion DB");
-        }
-    }
+    
 
-    private void closeConnection() {
-        try {
-            connection.close();
-        } catch (SQLException ex) {
-        }
-    }
 
     @Override
     public List<EnumFuncionalidades> getFuncionalidades(EnumPerfil perfil) throws PersistenciaExcepcion {
-        createConnection();
+        adminConnection.createConnection();
+        Connection connection = adminConnection.getConnection();
         List<EnumFuncionalidades> funcionalidades = new CredencialesDAO(connection).getFuncionalidades(perfil);
-        closeConnection();
+        adminConnection.closeConnection();
         return funcionalidades;
     }
 }
