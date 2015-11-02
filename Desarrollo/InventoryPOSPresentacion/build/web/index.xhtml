@@ -7,6 +7,7 @@
         <h:head>
             <style>
                 body{background: burlywood}
+                .error{color: red}
 
             </style>
         </h:head>
@@ -17,15 +18,17 @@
                     <table>
                         <tr>
                             <td>Nombre: </td>
-                            <td><h:inputText value="#{usuario.nombre}" /></td>
+                            <td><h:inputText id="user" value="#{usuario.nombre}" /></td>
                         </tr>
                         <tr>
                             <td>Contraseña: </td>
-                            <td><h:inputSecret value="#{usuario.contrasena}" /></td>
+                            <td><h:inputSecret id="pass" value="#{usuario.contrasena}" /></td>
                         </tr>    
                     </table>
+                     <h2 class ="error"><h:outputText value="#{usuario.outMessageInvalid}" /></h2>
                     <p>
-                    <h:commandButton value="Ingresar" action="#{usuario.verificarCredenciales}" />
+                    <h:commandButton value="Ingresar" onclick="validarCampos()" action="#{usuario.verificarCredenciales}" /><br />
+                    Ingrese su usuario y contraseña para navegar en la aplicación.
                     </p>
                 </center>
 

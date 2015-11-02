@@ -1,25 +1,63 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-     xmlns:h="http://java.sun.com/jsf/html"
-     xmlns:f="http://java.sun.com/jsf/core">
-        <f:view>    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <f:view>    
         <h:head>
             <style>
                 body{background: burlywood}
 
             </style>
+          
         </h:head>
         <h:body>
             <h:form>
-                <left>Bienvenido Señor: <h:outputText value="#{usuario.outMessage}" /></left>
+                <left>Bienvenid@, Ha ingresado con el usuario de <h:outputText value="#{usuario.outMessage}" /></left>
                 <br /><br /><br />
                 <center>
                     <h2>Menu Principal</h2><br /><br />
-                    <a href="/InventoryPOSPresentacion/faces/ingresarInsumo.xhtml">Ingresar Insumo</a><br /><br />
-                    <a href="/InventoryPOSPresentacion/faces/recargarInsumo.xhtml">Recargar Insumo</a><br /><br />
-                    <a href="/InventoryPOSPresentacion/faces/consultarInsumo.xhtml">Consultar Insumo</a><br /><br />
-                    <a href="/InventoryPOSPresentacion/faces/consultarConsumoInsumo.xhtml">Consultar Consumo Insumo</a><br /><br />
+                    <c:forEach items="#{usuario.funcionalidades}" var="item" varStatus="status">
+                        <c:if test="${item == 'INSUMO_REGISTRAR'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Ingresar Insumo</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'INSUMO_RECARGAR'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Recargar Insumo</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'INSUMO_CONSULTAR'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Consultar Insumo</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'INSUMO_CONSUMOS'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Consultar Consumo Insumos</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'INSUMO_LIMITES'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Limite Insumo</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'ALERTA_INVENTARIO'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Alerta Inventario</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'RECETAS_CREACION'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Creacion de Recetas</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'RECETAS_CONSULTAS'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Consultar Recetas</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'RECETAS_CONSUMOS'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Consumos de Recetas</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'PEDIDOS_REGISTRO'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Registro de Pedidos</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'PEDIDOS_CONSULTA_COLA'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Consulta de pedidos en cola</a> <br/><br/>
+                        </c:if>
+                        <c:if test="${item == 'PEDIDOS_CONSULTAR'}">
+                            <a href="/InventoryPOSPresentacion/faces/#{item}.xhtml">Consultar Pedidos</a> <br/><br/>
+                        </c:if>
+                   </c:forEach>
+
                 </center>
 
 

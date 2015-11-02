@@ -5,9 +5,11 @@
  */
 package co.com.inventorypos.presentacion.web;
 
+import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
 import co.com.inventorypos.negocio.NegocioExcepcion;
 import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +20,17 @@ public class UsuarioBeanVista {
     private String nombre;
     private String contrasena;
     private String outMessage;
+    private String outMessageInvalid;
+    private ArrayList<EnumFuncionalidades> funcionalidades;
+    
+    
+    /**
+     * Lista de funcionalidades según perfil 
+     * @return 
+     */
+    public ArrayList<EnumFuncionalidades> getFuncionalidades() {
+        return funcionalidades;
+    }
     
     
     /**
@@ -27,7 +40,14 @@ public class UsuarioBeanVista {
     public String getOutMessage() {
         return outMessage;
     }
-
+    /**
+     * Atributo mensaje invalido
+     * @return 
+     */
+    public String getOutMessageInvalid() {
+        return outMessageInvalid;
+    }
+    
     /**
      * Atributo Nombre
      *
@@ -56,19 +76,24 @@ public class UsuarioBeanVista {
 
     public String verificarCredenciales() {
         outMessage = "";
+        outMessageInvalid ="";
         EnumPerfil verificarCredenciales = null;
+        
         try {
             verificarCredenciales = IPosNegocioFachada.getInstancia().verificarCredenciales(getNombre(), getContrasena());
+            
             if (verificarCredenciales != null) {
+                funcionalidades = (ArrayList<EnumFuncionalidades>) IPosNegocioFachada.getInstancia().getFuncionalidades(verificarCredenciales);
                 outMessage = getNombre();
                 return "exito";
             } else {
-                outMessage="Credenciales incorrectas";
+                outMessageInvalid="Credenciales incorrectas";
             }
         } catch (NegocioExcepcion ex){
-            outMessage=ex.getMessage();
+            outMessageInvalid=ex.getMessage();
         }
             return "fracaso";
     }
+    
 
 }
