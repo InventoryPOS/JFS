@@ -5,8 +5,14 @@
  */
 package co.com.inventorypos.negocio.impl;
 
+import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
 import co.com.inventorypos.negocio.IIPosNegocioFachada;
+import co.com.inventorypos.negocio.NegocioExcepcion;
+import co.com.inventorypos.persistencia.IIPosPersistenciaFachada;
+import co.com.inventorypos.persistencia.PersistenciaExcepcion;
+import co.com.inventorypos.persistencia.impl.IPosPersistenciaFachada;
+import java.util.List;
 
 /**
  *
@@ -15,6 +21,7 @@ import co.com.inventorypos.negocio.IIPosNegocioFachada;
 public class IPosNegocioFachada implements IIPosNegocioFachada{
     
     private static IIPosNegocioFachada instancia;
+    private final IIPosPersistenciaFachada persistencia;
     
     public static IIPosNegocioFachada getInstancia(){
         if( instancia == null )
@@ -23,30 +30,35 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
     }
 
     private IPosNegocioFachada() {
+        persistencia = IPosPersistenciaFachada.getInstancia();
     }
     
 
     @Override
-    public EnumPerfil verificarCredenciales(String usuario, String password) {
-        if( (Object)usuario == null || usuario.isEmpty() ){
-            return null;
+    public EnumPerfil verificarCredenciales(String usuario, String password) throws NegocioExcepcion {
+        try {
+            if( (Object)usuario == null || usuario.isEmpty() 
+                    || (Object)password == null || password.isEmpty() ){
+                return null;
+            }
+            return persistencia.validarUsuario(usuario, password);
+        } catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex.getMessage());
         }
-        if( usuario.toUpperCase().equalsIgnoreCase("CAJERO") ){
-            return EnumPerfil.CAJERO;
+    }
+
+    @Override
+    public List<EnumFuncionalidades> getFuncionalidades(EnumPerfil perfil) throws NegocioExcepcion {
+        if( perfil == null ){
+            throw new NegocioExcepcion("perfil es null");
         }
-        if( usuario.toUpperCase().equalsIgnoreCase("ADMIN") ){
-            return EnumPerfil.ADMINISTRADOR;
+        try {
+            return persistencia.getFuncionalidades(perfil);
+        } catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex.getMessage());
+        } catch(Exception e){
+            throw new NegocioExcepcion();
         }
-        if( usuario.toUpperCase().equalsIgnoreCase("ADMINISTRADOR") ){
-            return EnumPerfil.ADMINISTRADOR;
-        }
-        if( usuario.toUpperCase().equalsIgnoreCase("DESPACHADOR") ){
-            return EnumPerfil.DESPACHADOR;
-        }
-        if( usuario.toUpperCase().equalsIgnoreCase("JEFE") ){
-            return EnumPerfil.JEFE_ALMACEN;
-        }
-        return null;
     }
     
 }
