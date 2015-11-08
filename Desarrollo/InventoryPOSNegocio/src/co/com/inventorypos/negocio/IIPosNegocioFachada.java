@@ -7,7 +7,7 @@ package co.com.inventorypos.negocio;
 
 import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
-import co.com.inventorypos.persistencia.PersistenciaExcepcion;
+import co.com.inventorypos.comun.vo.InsumoVO;
 import java.util.List;
 
 /**
@@ -21,13 +21,20 @@ public interface IIPosNegocioFachada {
      * @param usuario
      * @param password
      * @return 
+     * @throws co.com.inventorypos.negocio.NegocioExcepcion 
      */
     public EnumPerfil verificarCredenciales(String usuario, String password) throws NegocioExcepcion;
     /**
      * Retorna la lista de Funcionalidades del perfil recibido por parametro
      * @param perfil
-     * @return
-     * @throws PersistenciaExcepcion 
+     * @return 
+     * @throws co.com.inventorypos.negocio.NegocioExcepcion 
      */
     public List<EnumFuncionalidades> getFuncionalidades(EnumPerfil perfil) throws NegocioExcepcion;
+    /**
+     * 
+     * @return
+     * @throws NegocioExcepcion 
+     */
+    public List<InsumoVO> getInsumos() throws NegocioExcepcion;
 }
