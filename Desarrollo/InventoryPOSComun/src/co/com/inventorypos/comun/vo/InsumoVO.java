@@ -17,7 +17,7 @@ public class InsumoVO {
     private String descripcion;
     private double nivelMinimo;
     private double nivelOptimo;
-    private UnidadMedida unidad;
+    private UnidadMedidaVO unidad;
 
     public int getIdInsumo() {
         return idInsumo;
@@ -75,11 +75,11 @@ public class InsumoVO {
         this.nivelOptimo = nivelOptimo;
     }
 
-    public UnidadMedida getUnidad() {
+    public UnidadMedidaVO getUnidad() {
         return unidad;
     }
 
-    public void setUnidad(UnidadMedida unidad) {
+    public void setUnidad(UnidadMedidaVO unidad) {
         this.unidad = unidad;
     }
     

@@ -9,7 +9,7 @@ package co.com.inventorypos.comun.vo;
  *
  * @author FernandoMora
  */
-public class UnidadMedida {
+public class UnidadMedidaVO {
     private int unidadMedidaId;
     private String codUnidadMedida;
     private String nombre;
