@@ -19,6 +19,11 @@ public class InsumoVO {
     private double nivelOptimo;
     private UnidadMedidaVO unidad;
 
+    public InsumoVO() {
+        this.unidad = new UnidadMedidaVO();
+    }
+    
+
     public int getIdInsumo() {
         return idInsumo;
     }
