@@ -5,12 +5,52 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core">
+    <f:view>    
+        <h:head>
+            <style>
+                body{background: burlywood}
+
+            </style>
+        </h:head>
+        <h:body>
+            <h:form>
+                <center>
+                    <h2>Registrar Insumo</h2>
+                    <table>
+                        <tr>
+                            <td>Nombre:(*) </td>
+                            <td><h:inputText id="nombre" value="#{insumo.nombreInsumo}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Codigo:(*) </td>
+                            <td><h:inputText id="codigo" value="#{insumo.codigoInsumo}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Unidad:(*) </td>
+                            <td><h:inputText id="unidad" value="#{insumo.unidadInsumo}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Cantidad:(*) </td>
+                            <td><h:inputText id="cantidad" value="#{insumo.cantidadInsumo}" /></td>
+                        </tr>
+                        <tr>
+                            <td>Descripción:(*) </td>
+                            <td><h:inputText id="descripcion" value="#{insumo.descripcion}" /></td>
+                        </tr>
+                    </table>
+                    <p>
+                    <h:commandButton id="btnRegistrar" value="Ingresar"  action="#" />
+                    <h:commandButton id="btnLimpiar" value="Limpiar"  action="#" /><br />
+                    Ingrese los campos requeridos para poder crear el insumo
+                    </p>
+                </center>
+
+
+            </h:form>
+        </h:body>
+    </f:view>    
 </html>
+
