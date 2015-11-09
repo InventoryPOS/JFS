@@ -5,6 +5,15 @@
  */
 package co.com.inventorypos.presentacion.web;
 
+import co.com.inventorypos.comun.enums.EnumFuncionalidades;
+import co.com.inventorypos.comun.vo.InsumoVO;
+import co.com.inventorypos.negocio.NegocioExcepcion;
+import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author V5
@@ -14,18 +23,43 @@ public class InsumoBeanVista {
      * Atributos del insumo 
      */
     private String nombreInsumo;
-    private int codigoInsumo;
+    private String codigoInsumo;
     private String unidadInsumo;
     private int cantidadInsumo;
     private String descripcion;
+    private ArrayList<InsumoVO> insumos;
+    private String outMessage;
+    private String outMessageInvalid;
+
+    public String getOutMessageInvalid() {
+        return outMessageInvalid;
+    }
+    
+    
+
+    public ArrayList<InsumoVO> getInsumos() {
+        return insumos;
+    }
+
+    public String getOutMessage() {
+        return outMessage;
+    }
+    
+    
 
     public String getNombreInsumo() {
         return nombreInsumo;
     }
 
-    public int getCodigoInsumo() {
+    public String getCodigoInsumo() {
         return codigoInsumo;
     }
+
+    public void setCodigoInsumo(String codigoInsumo) {
+        this.codigoInsumo = codigoInsumo;
+    }
+
+    
 
     public String getUnidadInsumo() {
         return unidadInsumo;
@@ -43,9 +77,7 @@ public class InsumoBeanVista {
         this.nombreInsumo = nombreInsumo;
     }
 
-    public void setCodigoInsumo(int codigoInsumo) {
-        this.codigoInsumo = codigoInsumo;
-    }
+
 
     public void setUnidadInsumo(String unidadInsumo) {
         this.unidadInsumo = unidadInsumo;
@@ -59,6 +91,24 @@ public class InsumoBeanVista {
         this.descripcion = descripcion;
     }
     
-    
+    public String consultarInsumos(){
+        outMessage = "";
+        outMessageInvalid ="";
+        try {
+         if(getNombreInsumo().equals("") || getCodigoInsumo().equals("")){
+               outMessageInvalid ="Ingrese el nombre o el codigo para consultar un insumo";
+               return "fracaso";
+            }else{
+              insumos =(ArrayList<InsumoVO>) IPosNegocioFachada.getInstancia().getInsumos(getCodigoInsumo(),getNombreInsumo());
+              
+            }
+           
+            
+        } catch (NegocioExcepcion ex) {
+            Logger.getLogger(InsumoBeanVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return "consultar";
+    }
+
     
 }

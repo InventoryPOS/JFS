@@ -12,12 +12,24 @@
             <from-outcome>exito</from-outcome>
             <to-view-id>/menu.xhtml</to-view-id>
         </navigation-case>    
-         <navigation-case>
+        <navigation-case>
             <from-outcome>fracaso</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>  
+
     </navigation-rule>
-   
+    <navigation-rule>
+        <from-view-id>/INSUMO_CONSULTAR.xhtml</from-view-id>
+        <navigation-case>
+            
+            <from-outcome>consultar</from-outcome>
+            <to-view-id>/INSUMO_CONSULTAR.xhtml</to-view-id>
+        </navigation-case>  
+         <navigation-case>
+            <from-outcome>fracaso</from-outcome>
+            <to-view-id>/INSUMO_CONSULTAR.xhtml</to-view-id>
+        </navigation-case>  
+    </navigation-rule>
     <managed-bean>
         <managed-bean-name>usuario</managed-bean-name>>
         <managed-bean-class>co.com.inventorypos.presentacion.web.UsuarioBeanVista</managed-bean-class>

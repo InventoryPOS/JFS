@@ -20,12 +20,15 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    RegistroPedido ventanaRegistro = new RegistroPedido();
     public Login() {
+        ventanaRegistro.setVisible(false);
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         this.setLocationRelativeTo(null);
         this.setTitle("Inventory POS JFS - Login");
         negocioFachada = IPosNegocioFachada.getInstancia();
+        this.setVisible(true);
     }
 
     /**
@@ -176,6 +179,10 @@ public class Login extends javax.swing.JFrame {
                 List<EnumFuncionalidades> listaFuncionalidades = negocioFachada.getFuncionalidades(perfil);
                 if( listaFuncionalidades.contains(EnumFuncionalidades.PEDIDOS_REGISTRO) ){
                     System.out.println("Usuario ok");
+                    this.setVisible(false);
+                    ventanaRegistro.setVisible(true);
+                    ventanaRegistro.setUser(perfil.toString());
+                    
                 }else{
                     System.out.println("Perfil invalido");
                 }
