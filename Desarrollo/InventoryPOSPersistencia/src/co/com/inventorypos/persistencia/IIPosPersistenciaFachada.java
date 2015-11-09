@@ -7,6 +7,7 @@ package co.com.inventorypos.persistencia;
 
 import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
 import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import java.util.Date;
@@ -72,5 +73,5 @@ public interface IIPosPersistenciaFachada {
      * @return
      * @throws PersistenciaExcepcion 
      */
-    public List<InsumoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws PersistenciaExcepcion;
+    public List<InsumoConsumidoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws PersistenciaExcepcion;
 }

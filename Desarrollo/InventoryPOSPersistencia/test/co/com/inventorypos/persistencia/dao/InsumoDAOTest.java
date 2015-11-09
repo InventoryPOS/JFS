@@ -10,6 +10,8 @@ import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import co.com.inventorypos.persistencia.AdminConnection;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +40,7 @@ public class InsumoDAOTest {
     
     @After
     public void tearDown() {
+        connection.closeConnection();
     }
 
     /**
@@ -85,14 +88,21 @@ public class InsumoDAOTest {
      * Test of getInsumos method, of class InsumoDAO.
      */
     @Test
-    public void testGetInsumos() throws Exception {
+    public void testGetInsumos()  {
         System.out.println("getInsumos");
-        List<InsumoVO> result = insumoDAO.getInsumos();
+        List<InsumoVO> result = null;
+        try {
+            result = insumoDAO.getInsumos();
+        } catch (PersistenciaExcepcion ex) {
+            ex.printStackTrace();
+            fail("Error en persistencia");
+        }
         int expResult = 0;
         assertNotSame(expResult, result.size());
     }
     /**
      * Test of getInsumos method, of class InsumoDAO.
+     * @throws java.lang.Exception
      */
     @Test
     public void testGetInsumosFiltro() throws Exception {

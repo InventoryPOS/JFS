@@ -7,12 +7,14 @@ package co.com.inventorypos.negocio.impl;
 
 import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
 import co.com.inventorypos.negocio.IIPosNegocioFachada;
 import co.com.inventorypos.negocio.NegocioExcepcion;
 import co.com.inventorypos.persistencia.IIPosPersistenciaFachada;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import co.com.inventorypos.persistencia.impl.IPosPersistenciaFachada;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -94,6 +96,17 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
     public void crearInsumo(InsumoVO insumo) throws NegocioExcepcion {
         try {
             persistencia.crearInsumo(insumo);
+        }catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex);
+        }catch(Exception e){
+            throw new NegocioExcepcion();
+        }
+    }
+
+    @Override
+    public List<InsumoConsumidoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws NegocioExcepcion {
+        try {
+            return persistencia.getInsumosConsumidos(fechaInicial, fechaFinal);
         }catch (PersistenciaExcepcion ex) {
             throw new NegocioExcepcion(ex);
         }catch(Exception e){

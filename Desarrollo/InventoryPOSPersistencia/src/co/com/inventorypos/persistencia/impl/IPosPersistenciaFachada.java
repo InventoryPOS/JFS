@@ -7,12 +7,14 @@ package co.com.inventorypos.persistencia.impl;
 
 import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
 import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import co.com.inventorypos.persistencia.AdminConnection;
 import co.com.inventorypos.persistencia.IIPosPersistenciaFachada;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import co.com.inventorypos.persistencia.dao.CredencialesDAO;
+import co.com.inventorypos.persistencia.dao.InsumoConsumidoDAO;
 import co.com.inventorypos.persistencia.dao.InsumoDAO;
 import co.com.inventorypos.persistencia.dao.UnidadMedidaDAO;
 import java.util.Date;
@@ -28,6 +30,7 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
     private CredencialesDAO credencialesDAO;
     private UnidadMedidaDAO unidadMedidaDAO;
     private InsumoDAO insumoDAO;
+    private InsumoConsumidoDAO insumoConsumidoDAO;
 
     private IPosPersistenciaFachada() {
         adminConnection = new AdminConnection();
@@ -36,6 +39,7 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
             credencialesDAO = new CredencialesDAO(adminConnection.getConnection());
             unidadMedidaDAO = new UnidadMedidaDAO(adminConnection.getConnection());
             insumoDAO = new InsumoDAO(adminConnection.getConnection());
+            insumoConsumidoDAO = new InsumoConsumidoDAO(adminConnection.getConnection());
         } catch (PersistenciaExcepcion ex) {
         }
     }
@@ -81,8 +85,8 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
     }
 
     @Override
-    public List<InsumoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws PersistenciaExcepcion {
-        throw new PersistenciaExcepcion("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<InsumoConsumidoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws PersistenciaExcepcion {
+        return insumoConsumidoDAO.getInsumosConsumidos(fechaInicial, fechaFinal);
     }
 
     @Override

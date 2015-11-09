@@ -17,6 +17,10 @@ public class RecetaConsumidaVO {
     private Date fechaConsumo;
     private RecetaVO receta;
 
+    public RecetaConsumidaVO() {
+        receta = new RecetaVO();
+    }
+
     public int getIdRecetaConsumida() {
         return idRecetaConsumida;
     }

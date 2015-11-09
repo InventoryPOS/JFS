@@ -14,6 +14,10 @@ public class IngredienteVO {
     private double cantidad;
     private InsumoVO insumo;
 
+    public IngredienteVO() {
+        this.insumo = new InsumoVO();
+    }
+
     public int getIdIngrediente() {
         return idIngrediente;
     }

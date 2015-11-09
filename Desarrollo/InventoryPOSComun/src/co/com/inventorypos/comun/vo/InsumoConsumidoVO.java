@@ -17,6 +17,10 @@ public class InsumoConsumidoVO {
     private Date fechaConsumo;
     private InsumoVO insumo;
 
+    public InsumoConsumidoVO() {
+        this.insumo = new InsumoVO();
+    }
+
     public int getIdInsumoConsumo() {
         return idInsumoConsumo;
     }

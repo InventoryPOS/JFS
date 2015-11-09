@@ -5,6 +5,7 @@
  */
 package co.com.inventorypos.comun.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,6 +17,10 @@ public class PedidoVO {
     private int idPedido;
     private Date fechaPedido;
     private List<RecetaConsumidaVO> recetas;
+
+    public PedidoVO() {
+        recetas = new ArrayList<>();
+    }
 
     public int getIdPedido() {
         return idPedido;

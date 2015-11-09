@@ -5,6 +5,7 @@
  */
 package co.com.inventorypos.comun.vo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ public class RecetaVO {
     private String nombre;
     private String descripcion;
     private List<IngredienteVO> ingredientes;
+
+    public RecetaVO() {
+        ingredientes = new ArrayList<>();
+    }
 
     public int getIdReceta() {
         return idReceta;
