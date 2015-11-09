@@ -19,7 +19,7 @@ import java.util.List;
  * @author FernandoMora
  */
 public class InsumoDAO {
-    public Connection connection;
+    private Connection connection;
 
     public InsumoDAO(Connection connection) {
         this.connection = connection;

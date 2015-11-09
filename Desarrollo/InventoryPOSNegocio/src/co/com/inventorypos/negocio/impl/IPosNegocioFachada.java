@@ -9,6 +9,7 @@ import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
 import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
+import co.com.inventorypos.comun.vo.RecetaVO;
 import co.com.inventorypos.negocio.IIPosNegocioFachada;
 import co.com.inventorypos.negocio.NegocioExcepcion;
 import co.com.inventorypos.persistencia.IIPosPersistenciaFachada;
@@ -107,6 +108,17 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
     public List<InsumoConsumidoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws NegocioExcepcion {
         try {
             return persistencia.getInsumosConsumidos(fechaInicial, fechaFinal);
+        }catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex);
+        }catch(Exception e){
+            throw new NegocioExcepcion();
+        }
+    }
+
+    @Override
+    public void crearReceta(RecetaVO receta) throws NegocioExcepcion {
+        try {
+            persistencia.crearReceta(receta);
         }catch (PersistenciaExcepcion ex) {
             throw new NegocioExcepcion(ex);
         }catch(Exception e){

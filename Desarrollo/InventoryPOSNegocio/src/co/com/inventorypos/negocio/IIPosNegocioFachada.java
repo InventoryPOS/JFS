@@ -9,6 +9,7 @@ import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
 import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
+import co.com.inventorypos.comun.vo.RecetaVO;
 import java.util.Date;
 import java.util.List;
 
@@ -67,4 +68,10 @@ public interface IIPosNegocioFachada {
      * @throws NegocioExcepcion 
      */
     public List<InsumoConsumidoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws NegocioExcepcion;
+    /**
+     * 
+     * @param receta
+     * @throws NegocioExcepcion 
+     */
+    public void crearReceta(RecetaVO receta) throws NegocioExcepcion;
 }

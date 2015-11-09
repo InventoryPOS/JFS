@@ -9,13 +9,16 @@ import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
 import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
+import co.com.inventorypos.comun.vo.RecetaVO;
 import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import co.com.inventorypos.persistencia.AdminConnection;
 import co.com.inventorypos.persistencia.IIPosPersistenciaFachada;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import co.com.inventorypos.persistencia.dao.CredencialesDAO;
+import co.com.inventorypos.persistencia.dao.IngredienteDAO;
 import co.com.inventorypos.persistencia.dao.InsumoConsumidoDAO;
 import co.com.inventorypos.persistencia.dao.InsumoDAO;
+import co.com.inventorypos.persistencia.dao.RecetaDAO;
 import co.com.inventorypos.persistencia.dao.UnidadMedidaDAO;
 import java.util.Date;
 import java.util.List;
@@ -31,6 +34,8 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
     private UnidadMedidaDAO unidadMedidaDAO;
     private InsumoDAO insumoDAO;
     private InsumoConsumidoDAO insumoConsumidoDAO;
+    private RecetaDAO recetaDAO;
+    private IngredienteDAO ingredienteDAO;
 
     private IPosPersistenciaFachada() {
         adminConnection = new AdminConnection();
@@ -40,6 +45,8 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
             unidadMedidaDAO = new UnidadMedidaDAO(adminConnection.getConnection());
             insumoDAO = new InsumoDAO(adminConnection.getConnection());
             insumoConsumidoDAO = new InsumoConsumidoDAO(adminConnection.getConnection());
+            ingredienteDAO = new IngredienteDAO(adminConnection.getConnection());
+            recetaDAO = new RecetaDAO(adminConnection.getConnection(), ingredienteDAO);
         } catch (PersistenciaExcepcion ex) {
         }
     }
@@ -93,5 +100,10 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
     public List<InsumoVO> getInsumos(String codigo, String nombre) throws PersistenciaExcepcion {
         List<InsumoVO> lista = insumoDAO.getInsumos(codigo,nombre);
         return lista;
+    }
+
+    @Override
+    public void crearReceta(RecetaVO receta) throws PersistenciaExcepcion {
+        recetaDAO.crearReceta(receta);
     }
 }
