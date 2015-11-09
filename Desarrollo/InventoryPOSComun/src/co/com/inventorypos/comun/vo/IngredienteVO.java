@@ -11,6 +11,7 @@ package co.com.inventorypos.comun.vo;
  */
 public class IngredienteVO {
     private int idIngrediente;
+    private int idReceta;
     private double cantidad;
     private InsumoVO insumo;
 
@@ -40,6 +41,14 @@ public class IngredienteVO {
 
     public void setInsumo(InsumoVO insumo) {
         this.insumo = insumo;
+    }
+
+    public int getIdReceta() {
+        return idReceta;
+    }
+
+    public void setIdReceta(int idReceta) {
+        this.idReceta = idReceta;
     }
     
 }
