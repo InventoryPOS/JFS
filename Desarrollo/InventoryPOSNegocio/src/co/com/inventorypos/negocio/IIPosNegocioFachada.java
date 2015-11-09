@@ -45,4 +45,16 @@ public interface IIPosNegocioFachada {
      * @throws NegocioExcepcion 
      */
     public List<InsumoVO> getInsumos(String codigo, String nombre) throws NegocioExcepcion;
+    /**
+     * 
+     * @param insumo
+     * @throws NegocioExcepcion 
+     */
+    public void actualizarInsumo(InsumoVO insumo) throws NegocioExcepcion;
+    /**
+     * 
+     * @param insumo
+     * @throws NegocioExcepcion 
+     */
+    public void crearInsumo(InsumoVO insumo) throws NegocioExcepcion;
 }

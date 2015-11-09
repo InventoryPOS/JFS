@@ -52,8 +52,13 @@ public class InsumoDAOTest {
         UnidadMedidaVO unidad= new UnidadMedidaVO();
         unidad.setUnidadMedidaId(1);
         insumo.setUnidad(unidad);
-        insumoDAO.crearInsumo(insumo);
-        assertNotSame(0, insumo.getIdInsumo());
+        try {
+            insumoDAO.crearInsumo(insumo);
+        } catch (PersistenciaExcepcion ex) {
+            ex.printStackTrace();
+            fail("Error en persistencia");
+        }
+        assertTrue(true);
     }
 
     /**
@@ -62,10 +67,18 @@ public class InsumoDAOTest {
     @Test
     public void testActualizarInsumo() {
         System.out.println("actualizarInsumo");
-        InsumoVO insumo = null;
-        insumoDAO.actualizarInsumo(insumo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try {
+            InsumoVO insumo = new InsumoVO();
+            insumo.setIdInsumo(1);
+            insumo.setCantidad(101);
+            insumo.setNivelMinimo(20);
+            insumo.setNivelOptimo(20);
+            insumoDAO.actualizarInsumo(insumo);
+        } catch (PersistenciaExcepcion ex) {
+            ex.printStackTrace();
+            fail("Error en persistencia");
+        }
+        assertTrue(true);
     }
 
     /**
@@ -77,8 +90,16 @@ public class InsumoDAOTest {
         List<InsumoVO> result = insumoDAO.getInsumos();
         int expResult = 0;
         assertNotSame(expResult, result.size());
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of getInsumos method, of class InsumoDAO.
+     */
+    @Test
+    public void testGetInsumosFiltro() throws Exception {
+        System.out.println("testGetInsumosFiltro");
+        List<InsumoVO> result = insumoDAO.getInsumos(null,"1");
+        int expResult = 0;
+        assertSame(1, result.size());
     }
     
 }

@@ -70,9 +70,31 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
     @Override
     public List<InsumoVO> getInsumos(String codigo, String nombre) throws NegocioExcepcion {
         try {
-            List<InsumoVO> listaInsumos = persistencia.getInsumos();
+            List<InsumoVO> listaInsumos = persistencia.getInsumos(codigo,nombre);
             return listaInsumos;
         } catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex);
+        }catch(Exception e){
+            throw new NegocioExcepcion();
+        }
+    }
+
+    @Override
+    public void actualizarInsumo(InsumoVO insumo) throws NegocioExcepcion {
+        try {
+            persistencia.actualizarInsumo(insumo);
+        }catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex);
+        }catch(Exception e){
+            throw new NegocioExcepcion();
+        }
+    }
+
+    @Override
+    public void crearInsumo(InsumoVO insumo) throws NegocioExcepcion {
+        try {
+            persistencia.crearInsumo(insumo);
+        }catch (PersistenciaExcepcion ex) {
             throw new NegocioExcepcion(ex);
         }catch(Exception e){
             throw new NegocioExcepcion();

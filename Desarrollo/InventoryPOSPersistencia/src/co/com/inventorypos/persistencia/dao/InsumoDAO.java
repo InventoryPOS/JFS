@@ -25,12 +25,59 @@ public class InsumoDAO {
         this.connection = connection;
     }
 
-    public void crearInsumo(InsumoVO insumo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void crearInsumo(InsumoVO insumo) throws PersistenciaExcepcion {
+        PreparedStatement statement = null;
+        String sql = "INSERT INTO IPOS_INSUMO "
+                + "(INSUMO_ID,NOMBRE,CANTIDAD,DESCRIPCION,NIVEL_MINIMO,NIVEL_OPTIMO,UNIDAD_MEDIDA_ID,CODIGO_INSUMO)"
+                + " VALUES "
+                + "(SEQ_IPOS_INSUMO.NEXTVAL,?,?,?,?,?,?,?)";
+        try {
+            statement = connection.prepareStatement(sql);
+            int nParameter = 1;
+            statement.setString(nParameter++, insumo.getNombre());
+            statement.setDouble(nParameter++, insumo.getCantidad());
+            statement.setString(nParameter++, insumo.getDescripcion());
+            statement.setDouble(nParameter++, insumo.getNivelMinimo());
+            statement.setDouble(nParameter++, insumo.getNivelOptimo());
+            statement.setInt(nParameter++, insumo.getUnidad().getUnidadMedidaId());
+            statement.setString(nParameter++, insumo.getCodInsumo());
+            
+            boolean result = statement.execute();
+        } catch(Exception e){
+            e.printStackTrace();
+            throw new PersistenciaExcepcion();
+        }finally{
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+            }
+        }
     }
 
-    public void actualizarInsumo(InsumoVO insumo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void actualizarInsumo(InsumoVO insumo) throws PersistenciaExcepcion {
+        PreparedStatement statement = null;
+        String sql = "UPDATE IPOS_INSUMO "
+                + " SET "
+                + " CANTIDAD = ? , NIVEL_MINIMO = ?, NIVEL_OPTIMO = ? "
+                + " WHERE INSUMO_ID = ?";
+        try {
+            statement = connection.prepareStatement(sql);
+            int nParameter = 1;
+            statement.setDouble(nParameter++, insumo.getCantidad());
+            statement.setDouble(nParameter++, insumo.getNivelMinimo());
+            statement.setDouble(nParameter++, insumo.getNivelOptimo());
+            statement.setInt(nParameter++, insumo.getIdInsumo());
+            
+            boolean result = statement.execute();
+        } catch(Exception e){
+            e.printStackTrace();
+            throw new PersistenciaExcepcion();
+        }finally{
+            try {
+                statement.close();
+            } catch (SQLException ex) {
+            }
+        }
     }
 
     public List<InsumoVO> getInsumos() throws PersistenciaExcepcion {
@@ -51,10 +98,10 @@ public class InsumoDAO {
             statement = connection.prepareStatement(sql);
             int nParameter = 1;
             if( (Object)codigo != null ){
-                statement.setString(nParameter, codigo);
+                statement.setString(nParameter++, codigo);
             }
             if( (Object)nombre != null ){
-                statement.setString(nParameter, "%"+nombre+"%");
+                statement.setString(nParameter++, "%"+nombre+"%");
             }
             
             resultSet = statement.executeQuery();

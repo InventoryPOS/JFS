@@ -66,7 +66,7 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
 
     @Override
     public void crearInsumo(InsumoVO insumo) throws PersistenciaExcepcion {
-        throw new PersistenciaExcepcion("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        insumoDAO.crearInsumo(insumo);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
 
     @Override
     public void actualizarInsumo(InsumoVO insumo) throws PersistenciaExcepcion {
-        throw new PersistenciaExcepcion("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        insumoDAO.actualizarInsumo(insumo);
     }
 
     @Override
