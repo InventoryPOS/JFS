@@ -5,6 +5,15 @@
  */
 package co.com.inventorypos.presentacion.web;
 
+import co.com.inventorypos.comun.enums.EnumFuncionalidades;
+import co.com.inventorypos.comun.vo.InsumoVO;
+import co.com.inventorypos.negocio.NegocioExcepcion;
+import co.com.inventorypos.negocio.impl.IPosNegocioFachada;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author V5
@@ -18,6 +27,13 @@ public class InsumoBeanVista {
     private String unidadInsumo;
     private int cantidadInsumo;
     private String descripcion;
+    private ArrayList<InsumoVO> insumos;
+
+    public ArrayList<InsumoVO> getInsumos() {
+        return insumos;
+    }
+    
+    
 
     public String getNombreInsumo() {
         return nombreInsumo;
@@ -57,6 +73,16 @@ public class InsumoBeanVista {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    public String consultarInsumos(){
+        try {
+             insumos =(ArrayList<InsumoVO>) IPosNegocioFachada.getInstancia().getInsumos();
+            
+        } catch (NegocioExcepcion ex) {
+            Logger.getLogger(InsumoBeanVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return "consultar";
     }
     
     
