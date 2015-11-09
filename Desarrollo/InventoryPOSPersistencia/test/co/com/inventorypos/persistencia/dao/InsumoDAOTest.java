@@ -10,8 +10,6 @@ import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import co.com.inventorypos.persistencia.AdminConnection;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,6 +59,7 @@ public class InsumoDAOTest {
             ex.printStackTrace();
             fail("Error en persistencia");
         }
+        assertNotSame(0, insumo.getIdInsumo());
         assertTrue(true);
     }
 
@@ -70,9 +69,15 @@ public class InsumoDAOTest {
     @Test
     public void testActualizarInsumo() {
         System.out.println("actualizarInsumo");
+        InsumoVO insumo = new InsumoVO();
+        insumo.setCodInsumo("cod_pr");
+        insumo.setNombre("act de test");
+        UnidadMedidaVO unidad= new UnidadMedidaVO();
+        unidad.setUnidadMedidaId(1);
+        insumo.setUnidad(unidad);
         try {
-            InsumoVO insumo = new InsumoVO();
-            insumo.setIdInsumo(1);
+            insumoDAO.crearInsumo(insumo);
+            System.out.println("Id de insumo: "+insumo.getIdInsumo());
             insumo.setCantidad(101);
             insumo.setNivelMinimo(20);
             insumo.setNivelOptimo(20);
@@ -108,7 +113,6 @@ public class InsumoDAOTest {
     public void testGetInsumosFiltro() throws Exception {
         System.out.println("testGetInsumosFiltro");
         List<InsumoVO> result = insumoDAO.getInsumos(null,"1");
-        int expResult = 0;
         assertSame(1, result.size());
     }
     

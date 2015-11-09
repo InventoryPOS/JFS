@@ -27,13 +27,22 @@ public class InsumoDAO {
 
     public void crearInsumo(InsumoVO insumo) throws PersistenciaExcepcion {
         PreparedStatement statement = null;
+        ResultSet resultSet = null;
         String sql = "INSERT INTO IPOS_INSUMO "
                 + "(INSUMO_ID,NOMBRE,CANTIDAD,DESCRIPCION,NIVEL_MINIMO,NIVEL_OPTIMO,UNIDAD_MEDIDA_ID,CODIGO_INSUMO)"
                 + " VALUES "
-                + "(SEQ_IPOS_INSUMO.NEXTVAL,?,?,?,?,?,?,?)";
+                + "(?,?,?,?,?,?,?,?)";
         try {
+            statement = connection.prepareCall("SELECT SEQ_IPOS_INSUMO.NEXTVAL FROM DUAL");
+            resultSet = statement.executeQuery();
+            int idInsumo = 0;
+            if( resultSet.next() ){
+                idInsumo = resultSet.getInt(1);
+            }
+            insumo.setIdInsumo(idInsumo);
             statement = connection.prepareStatement(sql);
             int nParameter = 1;
+            statement.setInt(nParameter++, insumo.getIdInsumo());
             statement.setString(nParameter++, insumo.getNombre());
             statement.setDouble(nParameter++, insumo.getCantidad());
             statement.setString(nParameter++, insumo.getDescripcion());
@@ -49,6 +58,10 @@ public class InsumoDAO {
         }finally{
             try {
                 statement.close();
+            } catch (SQLException ex) {
+            }
+            try {
+                resultSet.close();
             } catch (SQLException ex) {
             }
         }
