@@ -6,12 +6,10 @@
 package co.com.inventorypos.persistencia.dao;
 
 import co.com.inventorypos.comun.vo.InsumoVO;
+import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import co.com.inventorypos.persistencia.AdminConnection;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
-import java.sql.Connection;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,10 +46,14 @@ public class InsumoDAOTest {
     @Test
     public void testCrearInsumo() {
         System.out.println("crearInsumo");
-        InsumoVO insumo = null;
+        InsumoVO insumo = new InsumoVO();
+        insumo.setCodInsumo("cod_pr");
+        insumo.setNombre("insumo de test");
+        UnidadMedidaVO unidad= new UnidadMedidaVO();
+        unidad.setUnidadMedidaId(1);
+        insumo.setUnidad(unidad);
         insumoDAO.crearInsumo(insumo);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertNotSame(0, insumo.getIdInsumo());
     }
 
     /**

@@ -84,4 +84,10 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
     public List<InsumoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws PersistenciaExcepcion {
         throw new PersistenciaExcepcion("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<InsumoVO> getInsumos(String codigo, String nombre) throws PersistenciaExcepcion {
+        List<InsumoVO> lista = insumoDAO.getInsumos(codigo,nombre);
+        return lista;
+    }
 }

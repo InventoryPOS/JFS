@@ -34,18 +34,35 @@ public class InsumoDAO {
     }
 
     public List<InsumoVO> getInsumos() throws PersistenciaExcepcion {
+        return getInsumos(null, null);
+    }
+    public List<InsumoVO> getInsumos(String codigo, String nombre) throws PersistenciaExcepcion {
         List<InsumoVO> lista = new ArrayList<>();
         PreparedStatement statement = null;
         ResultSet resultSet = null;
-        String sql = "SELECT * FROM IPOS_INSUMO_VIEW";
-        
+        String sql = "SELECT * FROM IPOS_INSUMO_VIEW WHERE 1=1 ";
+        if( (Object)codigo != null ){
+            sql += " AND CODIGO_INSUMO = ?";
+        }
+        if( (Object)nombre != null ){
+            sql += " AND NOMBRE LIKE ?";
+        }
         try {
             statement = connection.prepareStatement(sql);
+            int nParameter = 1;
+            if( (Object)codigo != null ){
+                statement.setString(nParameter, codigo);
+            }
+            if( (Object)nombre != null ){
+                statement.setString(nParameter, "%"+nombre+"%");
+            }
+            
             resultSet = statement.executeQuery();
             InsumoVO vo = null;
             while( resultSet.next() ){
                 vo = new InsumoVO();
                 vo.setCantidad(resultSet.getDouble("CANTIDAD"));
+                vo.setCodInsumo(resultSet.getString("CODIGO_INSUMO"));
                 vo.setDescripcion(resultSet.getString("DESCRIPCION"));
                 vo.setIdInsumo(resultSet.getInt("INSUMO_ID"));
                 vo.setNivelMinimo(resultSet.getDouble("NIVEL_MINIMO"));

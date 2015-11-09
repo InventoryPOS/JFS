@@ -64,6 +64,11 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
 
     @Override
     public List<InsumoVO> getInsumos() throws NegocioExcepcion {
+        return this.getInsumos(null, null);
+    }
+
+    @Override
+    public List<InsumoVO> getInsumos(String codigo, String nombre) throws NegocioExcepcion {
         try {
             List<InsumoVO> listaInsumos = persistencia.getInsumos();
             return listaInsumos;

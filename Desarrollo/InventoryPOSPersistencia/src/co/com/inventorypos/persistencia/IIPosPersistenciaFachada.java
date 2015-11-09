@@ -53,6 +53,14 @@ public interface IIPosPersistenciaFachada {
     public List<InsumoVO> getInsumos() throws PersistenciaExcepcion;
     /**
      * 
+     * @param codigo
+     * @param nombre
+     * @return
+     * @throws PersistenciaExcepcion 
+     */
+    public List<InsumoVO> getInsumos(String codigo,String nombre) throws PersistenciaExcepcion;
+    /**
+     * 
      * @param insumo
      * @throws PersistenciaExcepcion 
      */
