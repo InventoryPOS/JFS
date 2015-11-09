@@ -16,13 +16,24 @@
             <from-outcome>fracaso</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>  
+        <navigation-case>
+            <from-view-id>/INSUMO_CONSULTAR.xhtml</from-view-id>
+            <from-outcome>consultar</from-outcome>
+            <to-view-id>/INSUMO_CONSULTAR.xhtml</to-view-id>
+        </navigation-case>  
     </navigation-rule>
-  
+   
     <managed-bean>
         <managed-bean-name>usuario</managed-bean-name>>
         <managed-bean-class>co.com.inventorypos.presentacion.web.UsuarioBeanVista</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>    
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>insumo</managed-bean-name>>
+        <managed-bean-class>co.com.inventorypos.presentacion.web.InsumoBeanVista</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>      
  
 
 </faces-config>

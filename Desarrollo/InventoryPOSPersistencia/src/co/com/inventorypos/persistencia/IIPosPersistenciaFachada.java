@@ -7,6 +7,9 @@ package co.com.inventorypos.persistencia;
 
 import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.comun.vo.InsumoVO;
+import co.com.inventorypos.comun.vo.UnidadMedidaVO;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,4 +33,44 @@ public interface IIPosPersistenciaFachada {
      * @throws PersistenciaExcepcion 
      */
     public List<EnumFuncionalidades> getFuncionalidades(EnumPerfil perfil) throws PersistenciaExcepcion;
+    /**
+     * retorna la lista de las Unidades de medida
+     * @return
+     * @throws PersistenciaExcepcion 
+     */
+    public List<UnidadMedidaVO> getUnidadesMedida() throws PersistenciaExcepcion;
+    /**
+     * 
+     * @param insumo
+     * @throws PersistenciaExcepcion 
+     */
+    public void crearInsumo(InsumoVO insumo) throws PersistenciaExcepcion;
+    /**
+     * 
+     * @return
+     * @throws PersistenciaExcepcion 
+     */
+    public List<InsumoVO> getInsumos() throws PersistenciaExcepcion;
+    /**
+     * 
+     * @param codigo
+     * @param nombre
+     * @return
+     * @throws PersistenciaExcepcion 
+     */
+    public List<InsumoVO> getInsumos(String codigo,String nombre) throws PersistenciaExcepcion;
+    /**
+     * 
+     * @param insumo
+     * @throws PersistenciaExcepcion 
+     */
+    public void actualizarInsumo(InsumoVO insumo) throws PersistenciaExcepcion;
+    /**
+     * 
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return
+     * @throws PersistenciaExcepcion 
+     */
+    public List<InsumoVO> getInsumosConsumidos(Date fechaInicial, Date fechaFinal) throws PersistenciaExcepcion;
 }

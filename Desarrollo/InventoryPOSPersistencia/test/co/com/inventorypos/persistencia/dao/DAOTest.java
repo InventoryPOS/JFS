@@ -7,8 +7,10 @@ package co.com.inventorypos.persistencia.dao;
 
 import co.com.inventorypos.comun.enums.EnumFuncionalidades;
 import co.com.inventorypos.comun.enums.EnumPerfil;
+import co.com.inventorypos.comun.vo.UnidadMedidaVO;
+import co.com.inventorypos.persistencia.AdminConnection;
+import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,20 +23,21 @@ import static org.junit.Assert.*;
  *
  * @author FernandoMora
  */
-public class CredencialesDAOTest {
+public class DAOTest {
     private Connection connection;
     
-    public CredencialesDAOTest() {
+    public DAOTest() {
     }
     
     @Before
     public void setUp() {
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String user = "SYSTEM";
-        String password = "azumi";
+        AdminConnection con = new AdminConnection();
+        
         try {
-            connection = DriverManager.getConnection(url, user, password);
-        } catch (SQLException ex) {
+            con.createConnection();
+            connection = con.getConnection();
+            System.out.println("Conexion de prueba OK");
+        } catch (PersistenciaExcepcion ex) {
             ex.printStackTrace();
         }
     }
@@ -43,6 +46,7 @@ public class CredencialesDAOTest {
     public void tearDown() {
         try {
             connection.close();
+            System.out.println("Conexion de prueba Cerrada");
         } catch (SQLException ex) {
         }
     }
@@ -87,6 +91,14 @@ public class CredencialesDAOTest {
         listaCajero.add(EnumFuncionalidades.PEDIDOS_REGISTRO);
         List<EnumFuncionalidades> funcionalidades = instance.getFuncionalidades(EnumPerfil.CAJERO);
         assertEquals(listaCajero, funcionalidades);
+    }
+    @Test
+    public void testUnidadesMedida() throws Exception{
+        System.out.println("testUnidadesMedida");
+        
+        UnidadMedidaDAO instance = new UnidadMedidaDAO(connection);
+        List<UnidadMedidaVO> lista = instance.getUnidadesMedida();
+        assertNotSame(0, lista.size());
     }
     
 }
