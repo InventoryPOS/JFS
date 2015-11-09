@@ -5,8 +5,6 @@
  */
 package co.com.inventorypos.comun.vo;
 
-import java.util.Date;
-
 /**
  *
  * @author FernandoMora
@@ -14,7 +12,7 @@ import java.util.Date;
 public class RecetaConsumidaVO {
     private int idRecetaConsumida;
     private double cantidad;
-    private Date fechaConsumo;
+    private int idPedido;
     private RecetaVO receta;
 
     public RecetaConsumidaVO() {
@@ -37,20 +35,20 @@ public class RecetaConsumidaVO {
         this.cantidad = cantidad;
     }
 
-    public Date getFechaConsumo() {
-        return fechaConsumo;
-    }
-
-    public void setFechaConsumo(Date fechaConsumo) {
-        this.fechaConsumo = fechaConsumo;
-    }
-
     public RecetaVO getReceta() {
         return receta;
     }
 
     public void setReceta(RecetaVO receta) {
         this.receta = receta;
+    }
+
+    public int getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(int idPedido) {
+        this.idPedido = idPedido;
     }
     
 }
