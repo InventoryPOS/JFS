@@ -77,7 +77,7 @@ public class RecetaDAO {
         if( (Object)codigo != null ){
             sql += " AND CODIGO_INSUMO = ?";
         }*/
-        if( (Object)nombre != null ){
+        if( (Object)nombre != null && !nombre.isEmpty() ){
             sql += " AND UPPER(NOMBRE_RECETA) LIKE ?";
         }
         sql += " ORDER BY RECETA_ID DESC";
@@ -87,7 +87,7 @@ public class RecetaDAO {
            /* if( (Object)codigo != null ){
                 statement.setString(nParameter++, codigo);
             }*/
-            if( (Object)nombre != null ){
+            if( (Object)nombre != null && !nombre.isEmpty() ){
                 statement.setString(nParameter++, "%"+nombre.toUpperCase()+"%");
             }
             

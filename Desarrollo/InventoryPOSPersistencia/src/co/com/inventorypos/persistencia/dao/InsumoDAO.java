@@ -101,19 +101,19 @@ public class InsumoDAO {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         String sql = "SELECT * FROM IPOS_INSUMO_VIEW WHERE 1=1 ";
-        if( (Object)codigo != null ){
+        if( (Object)codigo != null && !codigo.isEmpty()){
             sql += " AND CODIGO_INSUMO = ?";
         }
-        if( (Object)nombre != null ){
+        if( (Object)nombre != null && !nombre.isEmpty()){
             sql += " AND UPPER(NOMBRE) LIKE ?";
         }
         try {
             statement = connection.prepareStatement(sql);
             int nParameter = 1;
-            if( (Object)codigo != null ){
+            if( (Object)codigo != null && !codigo.isEmpty() ){
                 statement.setString(nParameter++, codigo);
             }
-            if( (Object)nombre != null ){
+            if( (Object)nombre != null && !nombre.isEmpty() ){
                 statement.setString(nParameter++, "%"+nombre.toUpperCase()+"%");
             }
             
