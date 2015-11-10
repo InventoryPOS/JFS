@@ -19,8 +19,9 @@ import java.util.logging.Logger;
  * @author V5
  */
 public class InsumoBeanVista {
+
     /**
-     * Atributos del insumo 
+     * Atributos del insumo
      */
     private String nombreInsumo;
     private String codigoInsumo;
@@ -31,21 +32,18 @@ public class InsumoBeanVista {
     private String outMessage;
     private String outMessageInvalid;
 
-    public String getOutMessageInvalid() {
-        return outMessageInvalid;
-    }
-    
-    
-
-    public ArrayList<InsumoVO> getInsumos() {
-        return insumos;
-    }
-
     public String getOutMessage() {
         return outMessage;
     }
+
+    public String getOutMessageInvalid() {
+        return outMessageInvalid;
+    }
+
     
-    
+    public ArrayList<InsumoVO> getInsumos() {
+        return insumos;
+    }
 
     public String getNombreInsumo() {
         return nombreInsumo;
@@ -58,8 +56,6 @@ public class InsumoBeanVista {
     public void setCodigoInsumo(String codigoInsumo) {
         this.codigoInsumo = codigoInsumo;
     }
-
-    
 
     public String getUnidadInsumo() {
         return unidadInsumo;
@@ -77,8 +73,6 @@ public class InsumoBeanVista {
         this.nombreInsumo = nombreInsumo;
     }
 
-
-
     public void setUnidadInsumo(String unidadInsumo) {
         this.unidadInsumo = unidadInsumo;
     }
@@ -90,25 +84,17 @@ public class InsumoBeanVista {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    public String consultarInsumos(){
-        outMessage = "";
-        outMessageInvalid ="";
+
+    public String consultarInsumos() {
         try {
-         if(getNombreInsumo().equals("") || getCodigoInsumo().equals("")){
-               outMessageInvalid ="Ingrese el nombre o el codigo para consultar un insumo";
-               return "fracaso";
-            }else{
+
               insumos =(ArrayList<InsumoVO>) IPosNegocioFachada.getInstancia().getInsumos(getCodigoInsumo(),getNombreInsumo());
-              
-            }
-           
-            
+               
+ 
         } catch (NegocioExcepcion ex) {
             Logger.getLogger(InsumoBeanVista.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return "consultar";
+        return "consultar"; 
     }
 
-    
 }

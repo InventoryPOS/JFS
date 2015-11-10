@@ -13,7 +13,6 @@ and open the template in the editor.
         <h:head>
             <style>
                 body{background: burlywood}
-                .error{color: red}
             </style>
         </h:head>
         <h:body>
@@ -22,15 +21,14 @@ and open the template in the editor.
                     <h2>Consultar Insumo</h2>
                     <table>
                         <tr>
-                            <td>Nombre:(*) </td>
+                            <td>Nombre: </td>
                             <td><h:inputText id="nombre" value="#{insumo.nombreInsumo}" /></td>
                         </tr>
                         <tr>
-                            <td>Codigo:(*) </td>
+                            <td>Codigo: </td>
                             <td><h:inputText id="codigo" value="#{insumo.codigoInsumo}" /></td>
                         </tr>
                     </table>
-                    <h2 class ="error"><h:outputText value="#{insumo.outMessageInvalid}" /></h2>
                     <p>
                         <h:commandButton id="btnConsultar" value="Consultar"  action="#{insumo.consultarInsumos()}" />
                         <h:commandButton id="btnLimpiar" value="Limpiar"  action="#" /><br />
@@ -46,7 +44,9 @@ and open the template in the editor.
             <center>
                 
                 <h2>Insumos</h2><br /><br />
-                 <table  border="1">
+                 
+                <table  border="1">
+                 
                 <tr>
                     <th>id</th>
                     <th>nombre</th>
@@ -56,11 +56,11 @@ and open the template in the editor.
                     <th>nivel Insumo</th>
                     <th>nivel Optimo</th>
                 </tr>
-                 <c:forEach items="#{insumo.insumos}" var="item" varStatus="status">
+                <c:forEach items="#{insumo.insumos}" var="item" varStatus="status">     
                    
                         <tr>
                             <td><h:outputText value="${status.index+1}"/></td>
-
+                             no esta entrando al for hpta
                             <td><h:outputText value="${item.nombre}"/></td>
                             
                             <td><h:outputText value="${item.codInsumo}"/></td>
