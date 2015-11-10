@@ -12,6 +12,10 @@ import co.com.inventorypos.persistencia.AdminConnection;
 import co.com.inventorypos.persistencia.PersistenciaExcepcion;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -73,6 +77,16 @@ public class RecetaDAOTest {
             fail("falla en persistencia");
         }
         assertNotSame(0, receta.getIdReceta());
+    }
+    @Test
+    public void testConsultarReceta() {
+        List<RecetaVO> result = new ArrayList<>();
+        try {
+            result = dao.getRecetas(null, null);
+        } catch (PersistenciaExcepcion ex) {
+            fail("Persistencia error");
+        }
+        assertNotSame(0, result.size());
     }
     
 }

@@ -74,4 +74,12 @@ public interface IIPosNegocioFachada {
      * @throws NegocioExcepcion 
      */
     public void crearReceta(RecetaVO receta) throws NegocioExcepcion;
+    /**
+     * 
+     * @param codigoReceta
+     * @param nombreReceta
+     * @return
+     * @throws NegocioExcepcion 
+     */
+    public List<RecetaVO> getRecetas(String codigoReceta, String nombreReceta) throws NegocioExcepcion;
 }

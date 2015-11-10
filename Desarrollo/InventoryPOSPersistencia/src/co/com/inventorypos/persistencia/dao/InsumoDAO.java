@@ -105,7 +105,7 @@ public class InsumoDAO {
             sql += " AND CODIGO_INSUMO = ?";
         }
         if( (Object)nombre != null ){
-            sql += " AND NOMBRE LIKE ?";
+            sql += " AND UPPER(NOMBRE) LIKE ?";
         }
         try {
             statement = connection.prepareStatement(sql);
@@ -114,7 +114,7 @@ public class InsumoDAO {
                 statement.setString(nParameter++, codigo);
             }
             if( (Object)nombre != null ){
-                statement.setString(nParameter++, "%"+nombre+"%");
+                statement.setString(nParameter++, "%"+nombre.toUpperCase()+"%");
             }
             
             resultSet = statement.executeQuery();

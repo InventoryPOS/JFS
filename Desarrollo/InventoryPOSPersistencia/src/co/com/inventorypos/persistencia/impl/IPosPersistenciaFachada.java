@@ -106,4 +106,9 @@ public class IPosPersistenciaFachada implements IIPosPersistenciaFachada{
     public void crearReceta(RecetaVO receta) throws PersistenciaExcepcion {
         recetaDAO.crearReceta(receta);
     }
+
+    @Override
+    public List<RecetaVO> getRecetas(String codigoReceta, String nombreReceta) throws PersistenciaExcepcion {
+        return recetaDAO.getRecetas(codigoReceta, nombreReceta);
+    }
 }

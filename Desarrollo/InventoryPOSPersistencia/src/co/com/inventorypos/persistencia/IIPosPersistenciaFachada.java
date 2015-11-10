@@ -81,4 +81,11 @@ public interface IIPosPersistenciaFachada {
      * @throws PersistenciaExcepcion 
      */
     public void crearReceta(RecetaVO receta)throws PersistenciaExcepcion;
+    /**
+     * 
+     * @param codigoReceta
+     * @param nombreReceta
+     * @return 
+     */
+    public List<RecetaVO> getRecetas(String codigoReceta, String nombreReceta)throws PersistenciaExcepcion;
 }

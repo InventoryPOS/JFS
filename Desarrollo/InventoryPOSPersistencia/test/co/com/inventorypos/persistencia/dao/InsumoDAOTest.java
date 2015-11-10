@@ -114,6 +114,8 @@ public class InsumoDAOTest {
         System.out.println("testGetInsumosFiltro");
         List<InsumoVO> result = insumoDAO.getInsumos(null,"1");
         assertSame(1, result.size());
+        result = insumoDAO.getInsumos(null,"insumo 1");
+        assertSame(1, result.size());
     }
     
 }

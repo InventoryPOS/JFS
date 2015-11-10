@@ -125,5 +125,16 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
             throw new NegocioExcepcion();
         }
     }
+
+    @Override
+    public List<RecetaVO> getRecetas(String codigoReceta, String nombreReceta) throws NegocioExcepcion {
+        try {
+            return persistencia.getRecetas(codigoReceta,nombreReceta);
+        }catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex);
+        }catch(Exception e){
+            throw new NegocioExcepcion();
+        }
+    }
     
 }
