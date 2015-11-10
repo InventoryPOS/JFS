@@ -14,8 +14,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -82,7 +80,16 @@ public class RecetaDAOTest {
     public void testConsultarReceta() {
         List<RecetaVO> result = new ArrayList<>();
         try {
-            result = dao.getRecetas(null, null);
+            result = dao.getRecetas(null, "tes");
+            for (RecetaVO result1 : result) {
+                System.out.println(result1.getNombre());
+                System.out.println(result1.getDescripcion());
+                for (IngredienteVO ing : result1.getIngredientes()) {
+                    System.out.println("cantidad: "+ing.getCantidad());
+                    System.out.println("ingrediente: "+ing.getInsumo().getNombre()+" ("+ing.getInsumo().getIdInsumo()+")");
+                }
+                System.out.println("-------------------------------------");
+            }
         } catch (PersistenciaExcepcion ex) {
             fail("Persistencia error");
         }
