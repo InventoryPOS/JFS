@@ -10,6 +10,7 @@ import co.com.inventorypos.comun.enums.EnumPerfil;
 import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
 import co.com.inventorypos.comun.vo.RecetaVO;
+import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import java.util.Date;
 import java.util.List;
 
@@ -82,4 +83,11 @@ public interface IIPosNegocioFachada {
      * @throws NegocioExcepcion 
      */
     public List<RecetaVO> getRecetas(String codigoReceta, String nombreReceta) throws NegocioExcepcion;
+    
+      /**
+     * 
+     * @return
+     * @throws NegocioExcepcion 
+     */
+    public List<UnidadMedidaVO> getUnidadMedida() throws NegocioExcepcion;
 }
