@@ -10,6 +10,7 @@ import co.com.inventorypos.comun.enums.EnumPerfil;
 import co.com.inventorypos.comun.vo.InsumoConsumidoVO;
 import co.com.inventorypos.comun.vo.InsumoVO;
 import co.com.inventorypos.comun.vo.RecetaVO;
+import co.com.inventorypos.comun.vo.UnidadMedidaVO;
 import co.com.inventorypos.negocio.IIPosNegocioFachada;
 import co.com.inventorypos.negocio.NegocioExcepcion;
 import co.com.inventorypos.persistencia.IIPosPersistenciaFachada;
@@ -131,6 +132,17 @@ public class IPosNegocioFachada implements IIPosNegocioFachada{
         try {
             return persistencia.getRecetas(codigoReceta,nombreReceta);
         }catch (PersistenciaExcepcion ex) {
+            throw new NegocioExcepcion(ex);
+        }catch(Exception e){
+            throw new NegocioExcepcion();
+        }
+    }
+        @Override
+    public List<UnidadMedidaVO> getUnidadMedida() throws NegocioExcepcion {
+          try {
+            List<UnidadMedidaVO> listaUnidadMedida = persistencia.getUnidadesMedida();
+            return listaUnidadMedida;
+        } catch (PersistenciaExcepcion ex) {
             throw new NegocioExcepcion(ex);
         }catch(Exception e){
             throw new NegocioExcepcion();
